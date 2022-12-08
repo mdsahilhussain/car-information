@@ -1,8 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
+const {infoRouter} = require('./handlers/userInfo')
 
 const app = express();
-const port = process.env.port || 3000;
+const port = process.env.port || 5000;
 
 app.use(morgan("dev"));
 app.use(express.json());
@@ -19,6 +20,7 @@ app.get("/api", (request, response) => {
   });
 });
 
+app.use('/api', infoRouter)
 app.listen(port, () => {
   console.log(`app is listening on port ${port}`);
 });
